@@ -28,7 +28,7 @@ class ViewModel {
     public let error : PublishSubject<HomeError> = PublishSubject()
         
     
-    public func AFRequestData() {
+    public func requestData() {
         self.loading.onNext(true)
         AF.request(APIUrls.topUrl)
             .validate()
@@ -45,7 +45,7 @@ class ViewModel {
                         if error.isResponseSerializationError {
                             self?.error.onNext(.parseError("Sorry, parsing error"))
                         } else {
-                            self?.error.onNext(.internetError(error.localizedDescription))
+                            self?.error.onNext(.serverMessage(error.localizedDescription))
                         }
                     }
                     
