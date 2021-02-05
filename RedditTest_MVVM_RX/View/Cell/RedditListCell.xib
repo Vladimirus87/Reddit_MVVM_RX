@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17125"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="136" id="KGk-i7-Jjw" customClass="RedditListCell" customModule="TestWorkRaketa" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="136"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="136"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="TVd-kd-o9O">
+                        <rect key="frame" x="16" y="37" width="62" height="62"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="62" id="8nQ-1G-LIg"/>
+                            <constraint firstAttribute="height" constant="62" id="w5g-5s-rbQ"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tie-sG-e9B">
+                        <rect key="frame" x="16" y="8" width="190" height="21"/>
+                        <fontDescription key="fontDescription" name="AppleSDGothicNeo-Regular" family="Apple SD Gothic Neo" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="41M-Zk-22J">
+                        <rect key="frame" x="214" y="11" width="90" height="17"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="90" id="s2R-Us-ARP"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" name="AppleSDGothicNeo-Regular" family="Apple SD Gothic Neo" pointSize="14"/>
+                        <color key="textColor" red="0.14117647059999999" green="0.62745098040000002" blue="0.37254901959999998" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DKm-u1-2EM">
+                        <rect key="frame" x="16" y="112" width="288" height="16"/>
+                        <fontDescription key="fontDescription" name="AppleSDGothicNeo-Regular" family="Apple SD Gothic Neo" pointSize="13"/>
+                        <color key="textColor" red="1" green="0.53725490200000003" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7xL-lZ-rHu">
+                        <rect key="frame" x="86" y="37" width="218" height="17"/>
+                        <fontDescription key="fontDescription" name="AppleSDGothicNeo-Regular" family="Apple SD Gothic Neo" pointSize="14"/>
+                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="trailing" secondItem="7xL-lZ-rHu" secondAttribute="trailing" constant="16" id="2ck-pv-YdS"/>
+                    <constraint firstItem="TVd-kd-o9O" firstAttribute="top" secondItem="Tie-sG-e9B" secondAttribute="bottom" constant="8" id="9TY-2v-qaD"/>
+                    <constraint firstItem="DKm-u1-2EM" firstAttribute="top" relation="greaterThanOrEqual" secondItem="TVd-kd-o9O" secondAttribute="bottom" constant="8" id="KKO-Rx-m5B"/>
+                    <constraint firstItem="41M-Zk-22J" firstAttribute="firstBaseline" secondItem="Tie-sG-e9B" secondAttribute="firstBaseline" id="Nje-ew-wHf"/>
+                    <constraint firstItem="DKm-u1-2EM" firstAttribute="top" relation="greaterThanOrEqual" secondItem="7xL-lZ-rHu" secondAttribute="bottom" constant="8" id="O0V-7M-9DQ"/>
+                    <constraint firstItem="Tie-sG-e9B" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="Tai-BP-tph"/>
+                    <constraint firstItem="7xL-lZ-rHu" firstAttribute="top" secondItem="TVd-kd-o9O" secondAttribute="top" id="VtZ-yp-bfQ"/>
+                    <constraint firstAttribute="trailing" secondItem="41M-Zk-22J" secondAttribute="trailing" constant="16" id="auM-tO-QhA"/>
+                    <constraint firstItem="TVd-kd-o9O" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="bTo-88-PZ8"/>
+                    <constraint firstItem="Tie-sG-e9B" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="8" id="cGJ-oy-enV"/>
+                    <constraint firstAttribute="trailing" secondItem="DKm-u1-2EM" secondAttribute="trailing" constant="16" id="ch6-Cp-j3W"/>
+                    <constraint firstAttribute="bottom" secondItem="DKm-u1-2EM" secondAttribute="bottom" constant="8" id="iam-kR-XXC"/>
+                    <constraint firstItem="DKm-u1-2EM" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="pZr-rW-Chu"/>
+                    <constraint firstItem="7xL-lZ-rHu" firstAttribute="leading" secondItem="TVd-kd-o9O" secondAttribute="trailing" constant="8" id="z4N-xh-09d"/>
+                    <constraint firstItem="41M-Zk-22J" firstAttribute="leading" secondItem="Tie-sG-e9B" secondAttribute="trailing" constant="8" id="zaF-pP-Maf"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="authorName" destination="Tie-sG-e9B" id="yjm-Z8-YLG"/>
+                <outlet property="entryDate" destination="41M-Zk-22J" id="ZCO-N7-ZYZ"/>
+                <outlet property="numberOfComments" destination="DKm-u1-2EM" id="FP4-mx-hTr"/>
+                <outlet property="thumbnail" destination="TVd-kd-o9O" id="4Ld-FI-15o"/>
+                <outlet property="titleInfo" destination="7xL-lZ-rHu" id="y7G-yD-bwu"/>
+            </connections>
+            <point key="canvasLocation" x="-171.01449275362319" y="20.089285714285712"/>
+        </tableViewCell>
+    </objects>
+</document>

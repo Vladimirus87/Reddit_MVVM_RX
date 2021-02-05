@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="UFB-8v-VVy">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Reddit News-->
+        <scene sceneID="IAy-gF-Xg4">
+            <objects>
+                <viewController id="aOo-V9-l8I" customClass="HomeViewController" customModule="RedditTest_MVVM_RX" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="cRM-Ud-ziO">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="fgc-JY-UtC">
+                                <rect key="frame" x="0.0" y="140" width="414" height="722"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </tableView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="Cfm-bR-WQC"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="fgc-JY-UtC" firstAttribute="leading" secondItem="Cfm-bR-WQC" secondAttribute="leading" id="SIt-up-Ze2"/>
+                            <constraint firstItem="fgc-JY-UtC" firstAttribute="top" secondItem="Cfm-bR-WQC" secondAttribute="top" id="Xd7-lt-nZL"/>
+                            <constraint firstItem="fgc-JY-UtC" firstAttribute="bottom" secondItem="Cfm-bR-WQC" secondAttribute="bottom" id="gJh-fk-mP3"/>
+                            <constraint firstAttribute="trailing" secondItem="fgc-JY-UtC" secondAttribute="trailing" id="t7X-JZ-4xE"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Reddit News" id="OoT-9m-Rx2"/>
+                    <connections>
+                        <outlet property="tableView" destination="fgc-JY-UtC" id="oww-Fb-Lsh"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="4xD-1Z-zyO" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="676" y="105.69715142428787"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="TA6-Ot-6ap">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="UFB-8v-VVy" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" largeTitles="YES" id="fPb-Z2-JLr">
+                        <rect key="frame" x="0.0" y="44" width="414" height="96"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="aOo-V9-l8I" kind="relationship" relationship="rootViewController" id="4fw-O1-VUF"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="gPk-Sz-1fz" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-100" y="106"/>
+        </scene>
+    </scenes>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>
