@@ -7,6 +7,8 @@
 
 import UIKit
 import Kingfisher
+import RxSwift
+import RxCocoa
 
 protocol RedditListCellDelegate: class {
     func imageTapped(cell: UITableViewCell)

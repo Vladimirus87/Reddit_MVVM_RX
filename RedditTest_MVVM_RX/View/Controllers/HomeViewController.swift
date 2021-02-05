@@ -15,7 +15,6 @@ class HomeViewController: UIViewController {
     
     private let cellHeight: CGFloat = 136
     private let redditCellIdentifier = "RedditListCell"
-    private let loadingCellIdentifier = "LoadingCell"
     
     private let childData : PublishSubject<[ChildData]> = PublishSubject()
     private let bag = DisposeBag()
@@ -41,21 +40,16 @@ class HomeViewController: UIViewController {
     
     
     private func setupBinding() {
-        
-        /*
-         // binding loading to vc
-         homeViewModel.loading
-             .bind(to: self.rx.isAnimating)
-             .disposed(by: bag)
-         **/
-        
+        // binding loading to vc
+        viewModel.loading
+            .bind(to: self.rx.isAnimating)
+            .disposed(by: bag)
+            
         // observing errors to show
         viewModel.error
             .observeOn(MainScheduler.instance)
             .subscribe(onNext: { error in
                 switch error {
-                case .internetError(let message):
-                    MessageView.sharedInstance.showOnView(message: message, theme: .error)
                 case .parseError(let message):
                     MessageView.sharedInstance.showOnView(message: message, theme: .error)
                 case .serverMessage(let message):
@@ -63,36 +57,47 @@ class HomeViewController: UIViewController {
                 }
             }).disposed(by: bag)
         
-        viewModel.redditData.map({ (model) -> [ChildData] in
-            return model.data.children.map({$0.data})
-        })
-        .bind(to: tableView.rx.items(cellIdentifier: redditCellIdentifier, cellType: RedditListCell.self)) { row, redditChild, cell in
-            cell.updateData(redditChild)
+        // observing response
+        viewModel.redditData
+            .bind(to: tableView.rx.items(cellIdentifier: redditCellIdentifier, cellType: RedditListCell.self)) { row, redditChild, cell in
+                cell.updateData(redditChild)
+                cell.delegate = self
         }.disposed(by: bag)
         
+        // observing prefetch
+        tableView.rx.prefetchRows
+            .observeOn(SerialDispatchQueueScheduler.init(qos: .userInteractive))
+            .subscribe(onNext: { [weak self] ips in
+                let rows = ips.map({$0.row})
+                let last = (self?.viewModel.redditData.value.count ?? 0) - 1
+                if rows.contains(last) {
+                    self?.viewModel.requestData()
+                }
+        }).disposed(by: bag)
     }
     
     
     private func initXibs() {
         let redditNib = UINib(nibName: redditCellIdentifier, bundle: nil)
         tableView.register(redditNib, forCellReuseIdentifier: redditCellIdentifier)
-        let loadingNib = UINib(nibName: loadingCellIdentifier, bundle: nil)
-        tableView.register(loadingNib, forCellReuseIdentifier: loadingCellIdentifier)
     }
     
     private func setupUI() {
         title = "Reddit News"
-        tableView.rowHeight = cellHeight
         tableView.estimatedRowHeight = UITableView.automaticDimension
         tableView.addSubview(self.refreshControl)
         tableView.tableFooterView = UIView()
     }
     
-    
-    
-    
     @objc private func handleRefresh(_ refreshControl: UIRefreshControl) {
-        
+        self.refreshControl.endRefreshing()
+        self.viewModel.requestData(isHandleRefresh: true)
     }
 
+}
+
+
+// MARK: - RedditListCellDelegate
+extension HomeViewController: RedditListCellDelegate {
+    func imageTapped(cell: UITableViewCell) { }
 }

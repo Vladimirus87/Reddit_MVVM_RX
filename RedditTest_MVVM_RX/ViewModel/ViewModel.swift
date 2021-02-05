@@ -13,30 +13,49 @@ import Alamofire
 class ViewModel {
     
     public enum HomeError {
-        case internetError(String)
         case serverMessage(String)
         case parseError(String)
     }
     
     public enum APIUrls {
-        static let topUrl = "https://www.reddit.com/top.json?limit=15"
+        case topUrl(limit: Int)
+        
+        var urlString: String {
+            switch self {
+            case .topUrl(let limit):
+                return "https://www.reddit.com/top.json?limit=15\(limit)"
+            }
+        }
     }
     
     
-    public let redditData : PublishSubject<RedditModel> = PublishSubject()
-    public let loading: PublishSubject<Bool> = PublishSubject()
+    public let redditData : BehaviorRelay<[ChildData]> = BehaviorRelay(value: [])
+    public let loading: BehaviorRelay<Bool> = BehaviorRelay(value: false)
     public let error : PublishSubject<HomeError> = PublishSubject()
         
     
-    public func requestData() {
-        self.loading.onNext(true)
-        AF.request(APIUrls.topUrl)
+    public func requestData(isHandleRefresh: Bool = false) {
+        guard loading.value == false else { return }
+        
+        if isHandleRefresh {
+            self.redditData.accept([])
+        }
+        
+        print(#function, Thread.current)
+        self.loading.accept(true)
+        
+        var urlString: String = APIUrls.topUrl(limit: 15).urlString
+        if let _afterID = redditData.value.last?.name {
+            urlString.append("&after="+_afterID)
+        }
+        
+        AF.request(urlString)
             .validate()
             .responseDecodable(of: RedditModel.self) { [weak self] (response) in
-            self?.loading.onNext(false)
+            self?.loading.accept(false)
                 switch response.result {
                 case .success(let rData):
-                    self?.redditData.onNext(rData)
+                    self?.redditData.accept((self?.redditData.value ?? []) + rData.data.children.map({$0.data}))
                 case .failure(let error):
                     switch error.responseCode {
                     case 404:
