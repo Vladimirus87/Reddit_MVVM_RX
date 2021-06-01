@@ -12,36 +12,35 @@ import Alamofire
 
 class ViewModel {
     
-    public enum HomeError {
+    enum HomeError {
         case serverMessage(String)
         case parseError(String)
     }
     
-    public enum APIUrls {
+    enum APIUrls {
         case topUrl(limit: Int)
         
         var urlString: String {
             switch self {
             case .topUrl(let limit):
-                return "https://www.reddit.com/top.json?limit=15\(limit)"
+                return "https://www.reddit.com/top.json?limit=\(limit)"
             }
         }
     }
     
-    
-    public let redditData : BehaviorRelay<[ChildData]> = BehaviorRelay(value: [])
-    public let loading: BehaviorRelay<Bool> = BehaviorRelay(value: false)
-    public let error : PublishSubject<HomeError> = PublishSubject()
+    let redditData : BehaviorRelay<[ChildData]> = BehaviorRelay(value: [])
+    let loading: BehaviorRelay<Bool> = BehaviorRelay(value: false)
+    let error : PublishSubject<HomeError> = PublishSubject()
         
     
-    public func requestData(isHandleRefresh: Bool = false) {
+    func requestData(isHandleRefresh: Bool = false) {
         guard loading.value == false else { return }
         
         if isHandleRefresh {
             self.redditData.accept([])
         }
         
-        print(#function, Thread.current)
+//        print(#function, Thread.current)
         self.loading.accept(true)
         
         var urlString: String = APIUrls.topUrl(limit: 15).urlString
@@ -69,8 +68,6 @@ class ViewModel {
                     }
                     
                 }
-            
-            
         }
         
     }

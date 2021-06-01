@@ -19,14 +19,18 @@ class HomeViewController: UIViewController {
     private let childData : PublishSubject<[ChildData]> = PublishSubject()
     private let bag = DisposeBag()
     
-    var viewModel = ViewModel()
+    private var viewModel = ViewModel()
+    
+    private var messageView: MessageView {
+        MessageView.sharedInstance
+    }
     
     lazy var refreshControl: UIRefreshControl = {
         let refreshControl = UIRefreshControl()
         refreshControl.addTarget(self, action:
             #selector(handleRefresh(_:)),
                                  for: UIControl.Event.valueChanged)
-        refreshControl.tintColor = .green
+        refreshControl.tintColor = .gray
         return refreshControl
     }()
     
@@ -48,12 +52,9 @@ class HomeViewController: UIViewController {
         // observing errors to show
         viewModel.error
             .observeOn(MainScheduler.instance)
-            .subscribe(onNext: { error in
-                switch error {
-                case .parseError(let message):
-                    MessageView.sharedInstance.showOnView(message: message, theme: .error)
-                case .serverMessage(let message):
-                    MessageView.sharedInstance.showOnView(message: message, theme: .warning)
+            .subscribe(onNext: { [weak self] error in
+                DispatchQueue.main.async {
+                    self?.messageView.showOnViewWithError(error)
                 }
             }).disposed(by: bag)
         
@@ -61,7 +62,6 @@ class HomeViewController: UIViewController {
         viewModel.redditData
             .bind(to: tableView.rx.items(cellIdentifier: redditCellIdentifier, cellType: RedditListCell.self)) { row, redditChild, cell in
                 cell.updateData(redditChild)
-                cell.delegate = self
         }.disposed(by: bag)
         
         // observing prefetch
@@ -72,6 +72,24 @@ class HomeViewController: UIViewController {
                 let last = (self?.viewModel.redditData.value.count ?? 0) - 1
                 if rows.contains(last) {
                     self?.viewModel.requestData()
+                }
+        }).disposed(by: bag)
+        
+        // observing UITableViewRow selected
+        tableView.rx.modelSelected(ChildData.self)
+            .subscribe(onNext: { [weak self] item in
+                DispatchQueue.main.async {
+                    guard let urlString = item.imageUrl else {
+                        self?.messageView.showOnView(message: "No any links, try another picture.", theme: .error)
+                        return
+                    }
+                    let availableFormats = ["png", "jpg"]
+                    if let format = urlString.split(separator: ".").last,
+                       availableFormats.contains(String(format)) {
+                        self?.performSegue(withIdentifier: "ToDetailVC", sender: urlString)
+                    } else {
+                        self?.performSegue(withIdentifier: "toWebVC", sender: urlString)
+                    }
                 }
         }).disposed(by: bag)
     }
@@ -94,10 +112,12 @@ class HomeViewController: UIViewController {
         self.viewModel.requestData(isHandleRefresh: true)
     }
 
-}
-
-
-// MARK: - RedditListCellDelegate
-extension HomeViewController: RedditListCellDelegate {
-    func imageTapped(cell: UITableViewCell) { }
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        guard let urlString = sender as? String else { return }
+        if let destinationVC = segue.destination as? DetailViewController {
+            destinationVC.imageUrl = urlString
+        } else if let destinationVC = segue.destination as? WebViewController {
+            destinationVC.urlString = urlString
+        }
+    }
 }

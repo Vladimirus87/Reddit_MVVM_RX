@@ -10,7 +10,7 @@ import UIKit
 extension UIViewController {
     func startAnimating() {
         let animateLoading = UIActivityIndicatorView(style: .medium)
-        animateLoading.color = .green
+        animateLoading.color = .gray
         view.addSubview(animateLoading)
         view.bringSubviewToFront(animateLoading)
         animateLoading.translatesAutoresizingMaskIntoConstraints = false

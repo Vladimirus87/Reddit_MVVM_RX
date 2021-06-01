@@ -8,12 +8,14 @@
 
 /* Begin PBXBuildFile section */
 		5C645D50EC781E38A02C8931 /* Pods_RedditTest_MVVM_RX.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3193506A92AB8A6DF8FC05D9 /* Pods_RedditTest_MVVM_RX.framework */; };
+		B127518F26666259004C7451 /* Home.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B1336BC725CD34D300928A67 /* Home.storyboard */; };
+		B12751902666627D004C7451 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B127518B26664F91004C7451 /* DetailViewController.swift */; };
+		B12751912666627F004C7451 /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B127518A26664F91004C7451 /* WebViewController.swift */; };
 		B1336B9025CD312E00928A67 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1336B8F25CD312E00928A67 /* AppDelegate.swift */; };
 		B1336B9225CD312E00928A67 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1336B9125CD312E00928A67 /* SceneDelegate.swift */; };
 		B1336B9925CD312E00928A67 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B1336B9825CD312E00928A67 /* Assets.xcassets */; };
 		B1336B9C25CD312E00928A67 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B1336B9A25CD312E00928A67 /* LaunchScreen.storyboard */; };
 		B1336BC525CD348D00928A67 /* RedditModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1336BC425CD348D00928A67 /* RedditModel.swift */; };
-		B1336BC825CD34D300928A67 /* Home.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B1336BC725CD34D300928A67 /* Home.storyboard */; };
 		B1336BCD25CD351700928A67 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1336BCC25CD351700928A67 /* HomeViewController.swift */; };
 		B1336BD525CD354400928A67 /* RedditListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B1336BD225CD353E00928A67 /* RedditListCell.xib */; };
 		B1336BD725CD354400928A67 /* RedditListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1336BD325CD353E00928A67 /* RedditListCell.swift */; };
@@ -27,6 +29,8 @@
 /* Begin PBXFileReference section */
 		3193506A92AB8A6DF8FC05D9 /* Pods_RedditTest_MVVM_RX.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RedditTest_MVVM_RX.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3DCEE4848C4822682DCB0D2D /* Pods-RedditTest_MVVM_RX.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RedditTest_MVVM_RX.debug.xcconfig"; path = "Target Support Files/Pods-RedditTest_MVVM_RX/Pods-RedditTest_MVVM_RX.debug.xcconfig"; sourceTree = "<group>"; };
+		B127518A26664F91004C7451 /* WebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
+		B127518B26664F91004C7451 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		B1336B8C25CD312E00928A67 /* RedditTest_MVVM_RX.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RedditTest_MVVM_RX.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B1336B8F25CD312E00928A67 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B1336B9125CD312E00928A67 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -119,6 +123,8 @@
 			children = (
 				B1336BB425CD32B700928A67 /* System */,
 				B1336BCC25CD351700928A67 /* HomeViewController.swift */,
+				B127518B26664F91004C7451 /* DetailViewController.swift */,
+				B127518A26664F91004C7451 /* WebViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -271,8 +277,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				B1336BE825CD38F200928A67 /* MessageView.xib in Resources */,
+				B127518F26666259004C7451 /* Home.storyboard in Resources */,
 				B1336BD525CD354400928A67 /* RedditListCell.xib in Resources */,
-				B1336BC825CD34D300928A67 /* Home.storyboard in Resources */,
 				B1336B9C25CD312E00928A67 /* LaunchScreen.storyboard in Resources */,
 				B1336B9925CD312E00928A67 /* Assets.xcassets in Resources */,
 			);
@@ -327,6 +333,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B12751902666627D004C7451 /* DetailViewController.swift in Sources */,
+				B12751912666627F004C7451 /* WebViewController.swift in Sources */,
 				B1336B9025CD312E00928A67 /* AppDelegate.swift in Sources */,
 				B1336BE125CD382000928A67 /* ViewModel.swift in Sources */,
 				B1336BDE25CD373300928A67 /* Date+Extensions.swift in Sources */,

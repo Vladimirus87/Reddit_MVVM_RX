@@ -63,6 +63,16 @@ class MessageView: UIView {
         makeDim()
         hideTimer = Timer.scheduledTimer(timeInterval: 3, target: self, selector: #selector(hideView), userInfo: nil, repeats: false)
     }
+    
+    func showOnViewWithError(_ error: ViewModel.HomeError) {
+        switch error {
+        case .parseError(let message):
+            self.showOnView(message: message, theme: .error)
+        case .serverMessage(let message):
+            self.showOnView(message: message, theme: .warning)
+        }
+    }
+    
     private func applyTheme(theme:Theme) {
         var backgroundColor : UIColor
         switch theme {
